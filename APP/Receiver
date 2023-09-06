@@ -1,0 +1,179 @@
+/*
+ * Receiver
+ *
+ *  Created on: Sep 5, 2023
+ *  Author: Abdelrahman Hamdy
+ */
+
+#include "Func_main.h"
+
+
+int main(){
+
+	u8 Received_Key;
+	u8 Pressed_Key;
+
+	HLCD_VoidInit();
+	MUART_VoidInit();
+	HKPD_VoidInit();
+
+while(1)
+{
+	Received_Key = MUART_u8Receive();
+
+switch (Received_Key) {
+
+case'M':
+
+		HLCD_VoidClear();
+		HLCD_VoidSendString("Abdelrahman is");
+		HLCD_VoidCursor(0,LINE1);
+		HLCD_VoidSendString("trying to enter");
+		_delay_ms(1000);
+
+		HLCD_VoidClear();
+		HLCD_VoidSendString("Press 1 to allow");
+		HLCD_VoidCursor(0,LINE1);
+		HLCD_VoidSendString("and 0 to Deny: ");
+
+
+		while ((Pressed_Key=HKPD_u8GetPressedKey()) != '1'
+				 && Pressed_Key != '0' );
+
+			HLCD_VoidSendData(Pressed_Key);
+
+			_delay_ms(500);
+			HLCD_VoidClear();
+
+			if (Pressed_Key == '1')
+			{
+				MUART_VoidTransmit('P');
+				HLCD_VoidSendString("He can pass now");
+			}
+			else if (Pressed_Key == '0' )
+			{
+				MUART_VoidTransmit('X');
+				HLCD_VoidSendString("He can't pass");
+			}
+				_delay_ms(500);
+				HLCD_VoidClear();
+break;
+
+case 'B':
+
+
+		HLCD_VoidClear();
+		HLCD_VoidSendString("Amr is trying");
+		HLCD_VoidCursor(0,LINE1);
+		HLCD_VoidSendString("to enter");
+		_delay_ms(1000);
+
+		HLCD_VoidClear();
+		HLCD_VoidSendString("Press 1 to allow");
+		HLCD_VoidCursor(0,LINE1);
+		HLCD_VoidSendString("and 0 to Deny: ");
+		_delay_ms(1000);
+
+		while ((Pressed_Key=HKPD_u8GetPressedKey()) != '1'
+				 && Pressed_Key != '0' );
+
+			HLCD_VoidSendData(Pressed_Key);
+			_delay_ms(500);
+
+			HLCD_VoidClear();
+
+			if (Pressed_Key == '1')
+			{
+				MUART_VoidTransmit('P');
+				HLCD_VoidSendString("He can pass now");
+			}
+			else if (Pressed_Key == '0' )
+			{
+				MUART_VoidTransmit('X');
+				HLCD_VoidSendString("He can't pass");
+			}
+				_delay_ms(500);
+				HLCD_VoidClear();
+break;
+case 'W':
+
+			HLCD_VoidClear();
+			HLCD_VoidSendString("Wael is trying");
+			HLCD_VoidCursor(0,LINE1);
+			HLCD_VoidSendString("to enter");
+			_delay_ms(1000);
+
+			HLCD_VoidClear();
+			HLCD_VoidSendString("Press 1 to allow");
+			HLCD_VoidCursor(0,LINE1);
+			HLCD_VoidSendString("and 0 to Deny: ");
+			_delay_ms(1000);
+
+			while ((Pressed_Key=HKPD_u8GetPressedKey()) != '1'
+				 && Pressed_Key != '0' );
+
+			HLCD_VoidSendData(Pressed_Key);
+
+			_delay_ms(500);
+			HLCD_VoidClear();
+
+			if (Pressed_Key == '1')
+			{
+				MUART_VoidTransmit('P');
+				HLCD_VoidSendString("He can pass now");
+			}
+			else if (Pressed_Key == '0' )
+			{
+				MUART_VoidTransmit('X');
+				HLCD_VoidSendString("He can't pass");
+			}
+			_delay_ms(500);
+			HLCD_VoidClear();
+break;
+
+case 'D':
+
+			HLCD_VoidClear();
+			HLCD_VoidSendString("To allow access");
+			HLCD_VoidCursor(0,LINE1);
+			HLCD_VoidSendString("enter 1: ");
+			_delay_ms(1000);
+
+			while ((Pressed_Key=HKPD_u8GetPressedKey()) != '1'
+				&& Pressed_Key != '0' );
+
+			HLCD_VoidSendData(Pressed_Key);
+
+			_delay_ms(500);
+			HLCD_VoidClear();
+
+		if (Pressed_Key == '1')
+		{
+			MUART_VoidTransmit('A');
+			HLCD_VoidSendString("Access allowed");
+		}
+		if (Pressed_Key == '0' )
+		{
+			MUART_VoidTransmit('X');
+			HLCD_VoidSendString("Access denied");
+		}
+
+			_delay_ms(500);
+			HLCD_VoidClear();
+break;
+
+case 'C':
+
+	HLCD_VoidClear();
+	HLCD_VoidSendString("Someone is ");
+	HLCD_VoidCursor(0,LINE1);
+	HLCD_VoidSendString("trying to enter");
+
+break;
+
+}
+
+}
+
+return 0;
+}
